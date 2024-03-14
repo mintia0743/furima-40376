@@ -40,11 +40,13 @@
 
 | カラム名 | データ型 | オプション                          |
 |---------|--------|------------------------------------|
-| user_id  | integer | null:false, foreign_key: true |
-| item_id  | integer | null:false, foreign_key: true |
+| user_id  | references | null:false, foreign_key: true |
+| item_id  | references | null:false, foreign_key: true |
 
 ### Association
-- has_one :address
+has_one :address
+belongs_to:user
+belongs_to:item
 
 ### addresses テーブル
 
@@ -56,7 +58,7 @@
 | block        | string | null:false                       |
 | building     | string |                                  |
 | phone_number | string | null:false                       |
-| buy_id        | integer| null:false, foreign_key: true   |
+| buy_id        | references| null:false, foreign_key: true   |
 
 ### Association
 - belongs_to :buy
