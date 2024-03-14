@@ -25,9 +25,9 @@
 | description            | text   | null:false                 |
 | category_id            | integer| null:false                 |
 | status_id              | integer| null:false                 |
-| shipping_fee_id        | integer| null:false                 |
-| prefecture_id          | integer| null:false, foreign_key: true |
-| scheduled_delivery_id  | integer| null:false, foreign_key: true |
+| shipping_fee           | integer| null:false                 |
+| prefecture             | integer| null:false,                |
+| scheduled_delivery_id  | integer| null:false,                |
 | price                  | integer| null:false                 |
 | user                   | references | null:false, foreign_key: true |
 
@@ -40,23 +40,23 @@
 
 | カラム名 | データ型 | オプション                          |
 |---------|--------|------------------------------------|
-| user_id  | integer| null:false, foreign_key: true |
-| item_id  | integer| null:false, foreign_key: true |
+| user  | integer| null:false, foreign_key: true |
+| item  | integer| null:false, foreign_key: true |
 
 ### Association
-- has_many :address
+- has_one :address
 
 ### addresses テーブル
 
 | カラム名      | データ型 | オプション                        |
 |--------------|--------|----------------------------------|
 | postal_code  | string | null:false                       |
-| prefecture_id| integer| null:false, foreign_key: true    |
+| prefecture_id| integer| null:false,                      |
 | city         | string | null:false                       |
 | block        | string | null:false                       |
 | building     | string |                                  |
 | phone_number | string | null:false                       |
-| buy_id   | integer| null:false, foreign_key: true    |
+| buy_id   | integer| null:false,                          |
 
 ### Association
 - belongs_to :buy
