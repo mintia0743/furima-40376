@@ -55,6 +55,13 @@ RSpec.describe User, type: :model do
         expect(@user).not_to be_valid
         expect(@user.errors[:birth_date]).to include("can't be blank")
       end
+      
+      it 'validates presence of password' do
+        @user.password = nil
+        expect(@user).not_to be_valid
+        expect(@user.errors[:password]).to include("can't be blank")
+      end
+
 
       it 'validates length of password' do
       @user.password = "12345"
