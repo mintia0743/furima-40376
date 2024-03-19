@@ -55,7 +55,14 @@ RSpec.describe User, type: :model do
         expect(@user).not_to be_valid
         expect(@user.errors[:birth_date]).to include("can't be blank")
       end
+
+      it 'validates length of password' do
+      @user.password = "12345"
+      expect(@user).not_to be_valid
+      expect(@user.errors[:password]).to include("is too short (minimum is 6 characters)")
     end
+  end
+
 
     context '正常系のテスト' do
       it 'validates format of last_name_kana' do
