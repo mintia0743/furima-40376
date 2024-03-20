@@ -18,7 +18,6 @@ class Item < ApplicationRecord
     less_than_or_equal_to: 9_999_999
   },
   format: { with: /\A[0-9]+\z/, message: "は半角数値のみ入力できます" }
-  validates :user, presence: true 
 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
