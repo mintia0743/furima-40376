@@ -23,7 +23,7 @@ class Item < ApplicationRecord
 
   belongs_to_active_hash :category, class_name: 'Category'
   belongs_to_active_hash :status, class_name: 'Condition'
-  belongs_to_active_hash :shipping_fee, class_name: 'Shipping_fee'
+  belongs_to_active_hash :shipping_fee, class_name: 'ShippingFee'
   belongs_to_active_hash :prefecture, class_name: 'Prefecture'
   belongs_to_active_hash :scheduled_delivery, class_name: 'DeliveryDay'
 end
