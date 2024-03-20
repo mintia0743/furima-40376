@@ -9,8 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const tax = Math.floor(inputValue * 0.1);
       const profit = inputValue - tax;
 
-      addTaxDom.textContent = tax.toLocaleString();
-      profitDom.textContent = profit.toLocaleString();
+      if (!isNaN(profit) && !isNaN(tax)) {
+        addTaxDom.textContent = tax.toLocaleString();
+        profitDom.textContent = profit.toLocaleString();
+      } else {
+        addTaxDom.textContent = "0";
+        profitDom.textContent = "0";
+      }
     });
   }
+});
+document.addEventListener("ajax:error", (event) => {
+  const [data, _status, _xhr] = event.detail;
+  const errors = data.errors;
+
+  console.error("Validation Error:", errors);
 });
