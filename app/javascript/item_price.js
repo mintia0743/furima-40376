@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+const price = () => {
   const addTaxDom = document.getElementById("add-tax-price");
   const profitDom = document.getElementById("profit");
   const priceInput = document.getElementById("item-price");
@@ -18,10 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-});
+};
 document.addEventListener("ajax:error", (event) => {
   const [data, _status, _xhr] = event.detail;
   const errors = data.errors;
 
   console.error("Validation Error:", errors);
 });
+window.addEventListener("turbo:load", price);
+window.addEventListener("turbo:render", price);
