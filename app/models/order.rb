@@ -3,9 +3,4 @@ class Order < ApplicationRecord
     belongs_to :user
     belongs_to :item
     has_one :address
-  
-    private
-
-  def mark_item_as_sold_out
-  end
 end
