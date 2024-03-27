@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path, alert: "他のユーザーの商品を編集する権限がありません" unless current_user == @item.user
+    redirect_to root_path, alert: "他のユーザーの商品を編集する権限がありません" unless current_user == @item.user && !@item.sold_out?
   end
 
   def update
@@ -52,5 +52,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :name, :description, :category_id, :status_id, :shipping_fee_id, :prefecture_id, :scheduled_delivery_id, :price)
+  end
+
+  def check_ownership
+    unless current_user == @item.user
+      redirect_to root_path, alert: "他のユーザーの商品を編集・削除する権限がありません"
+    end
   end
 end

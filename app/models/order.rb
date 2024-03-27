@@ -7,6 +7,5 @@ class Order < ApplicationRecord
     private
 
   def mark_item_as_sold_out
-    item.update(sold_out: true)
   end
 end
