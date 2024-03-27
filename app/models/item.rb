@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_one_attached :image
+  has_many :order
 
   validates :image, presence: true
   validates :name, presence: true
