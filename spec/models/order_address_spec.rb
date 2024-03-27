@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
+  before do
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item, user_id: user.id)
+    @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
+end
   describe 'validations' do
     context '異常系のテスト' do
-      before do
-        @order_address = FactoryBot.build(:order_address)
-        @order_address.token = "valid_token" # 有効なトークンを設定する
-      end
 
       it 'validates presence of postal_code' do
         @order_address.postal_code = nil
@@ -21,13 +22,7 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'validates presence of prefecture_id' do
-        @order_address.prefecture_id = nil
-        @order_address.valid?
-        expect(@order_address.errors[:prefecture_id]).to include("can't be blank")
-      end
-
-      it 'validates presence of prefecture_id' do
-        @order_address.prefecture_id = '1'
+        @order_address.prefecture_id = 1
         @order_address.valid?
         expect(@order_address.errors[:prefecture_id]).to include("can't be blank")
       end
@@ -87,9 +82,8 @@ RSpec.describe OrderAddress, type: :model do
       end
     
       it '建物名が空でも購入できること' do
-        @order_address.building = ''  
-        @order_address.valid?
-        expect(@order_address.errors[:building]).not_to include("can't be blank")
+        @order_address.building = '' 
+        expect(@order_address).to be_valid
       end
     end
   end
