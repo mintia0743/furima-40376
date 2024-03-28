@@ -2,15 +2,16 @@ class OrderAddress
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture_id, :city, :block, :building, :phone_number, :user_id, :item_id, :token
 
+  
   with_options presence: true do
     validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "は3桁ハイフン4桁の半角文字列のみ入力してください" }
-    validates :prefecture_id, exclusion: { in: [1], message: "can't be blank" }
     validates :city
     validates :block
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "は10桁以上11桁以内の半角数値のみ入力してください" }
     validates :user_id
     validates :item_id
     validates :token
+    validates :prefecture_id, presence: true, exclusion: { in: [1], message: "can't be blank" }
   end
   
 
