@@ -11,8 +11,9 @@ class OrderAddress
     validates :user_id
     validates :item_id
     validates :token
-    validates :prefecture_id, presence: true, exclusion: { in: [1], message: "can't be blank" }
   end
+  
+  validates :prefecture_id, presence: true, exclusion: { in: [1], message: "can't be blank" }
   
 
   def save
